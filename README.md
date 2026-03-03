@@ -14,7 +14,7 @@ Este projeto é uma landing page dinâmica que exibe o calendário de jogos do V
 - Links diretos para compra de ingressos e notícias oficiais.
 
 ## 📸 Demonstração
-![Preview do Site](./site-vasco.png)
+![Preview do Site](./image_0b9cd6.jpg)
 
 ## 🛠️ Como rodar o projeto
 1. Clone este repositório.
