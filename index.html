@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Vasco - Próximos Jogos</title>
+    <style>
+        .bg-vasco-texture {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+    <nav class="flex flex-col md:flex-row items-center justify-between p-6 bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
+        <div class="flex items-center gap-4 mb-4 md:mb-0">
+            <img src="vasco.png" alt="Logo Vasco" class="w-10">
+            <span class="font-bold text-xl tracking-tighter uppercase">Vasco da Gama</span>
+        </div>
+        <ul class="flex gap-6 text-sm font-semibold uppercase tracking-widest">
+            <li class="text-red-600 border-b-2 border-red-600">Jogos</li>
+            <li class="hover:text-red-500 cursor-pointer transition">
+    <a href="https://www.vasco.com.br" target="_blank" rel="noopener noreferrer">
+        Notícias
+    </a>
+</li>
+            <li class="hover:text-red-500 cursor-pointer transition">Ingressos</li>
+        </ul>
+       <a href="https://vasco.eleventickets.com/#!/home" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0">
+    <button class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-zinc-200 transition w-full md:w-auto">
+        GARANTA JÁ SEU INGRESSO
+    </button>
+</a>
+    </nav>
+
+    <header class="bg-vasco-texture h-[40vh] flex flex-col items-center justify-center text-center p-4">
+        <h1 class="text-4xl md:text-6xl font-black uppercase italic mb-2">Calendário de Jogos</h1>
+        <p class="text-zinc-400 font-medium tracking-[0.2em]">O GIGANTE DA COLINA</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 -mt-10">
+        <div id="game-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            </div>
+    </main>
+
+    <footer class="text-center p-12 text-zinc-600 text-xs border-t border-zinc-900 mt-10">
+        © 2026 CR Vasco da Gama - Desenvolvido para Estudos de ADS
+    </footer>
+
+    <script>
+        // Array de Objetos - Simulando dados de uma API
+        const jogos = [
+            {
+                id: 1,
+                adversario: "Palmeiras",
+                data: "Qui, 12 Mar | 19:30",
+                campeonato: "Brasileirão Série A",
+                estadio: "Estádio São Januário",
+                escudo_adv: "palmeiras.png",
+                destaque: true
+            },
+            {
+                id: 2,
+                adversario: "Cruzeiro",
+                data: "Dom, 15 Mar | 20:30",
+                campeonato: "Brasileirão Série A",
+                estadio: "Mineirão",
+                escudo_adv: "cruzeiro.png",
+                destaque: false
+            },
+            {
+                id: 3,
+                adversario: "Fluminense",
+                data: "Qua, 18 Mar | 21:30",
+                campeonato: "Brasileirão Série A",
+                estadio: "A definir",
+                escudo_adv: "fluminense.png",
+                destaque: false
+            },
+            {
+                id: 4,
+                adversario: "Grêmio",
+                data: "Dom, 22 Mar | 16:30",
+                campeonato: "Brasileirão Série A",
+                estadio: "São Januário",
+                escudo_adv: "gremio.png",
+                destaque: false
+            }
+        ];
+
+        const grid = document.getElementById('game-grid');
+
+        // Função para renderizar os cards
+        jogos.forEach(jogo => {
+            const card = document.createElement('div');
+            
+            // Lógica de destaque (o brilho vermelho que você viu na imagem)
+            const borderStyle = jogo.destaque 
+                ? 'border-2 border-red-600 shadow-[0_0_20px_rgba(220,38,38,0.3)]' 
+                : 'border border-zinc-800';
+
+            card.className = `${borderStyle} bg-zinc-900 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:scale-[1.02] transition duration-300`;
+
+            card.innerHTML = `
+                <div class="flex items-center gap-4 flex-1">
+                    <img src="vasco.png" class="w-12 h-12" alt="Vasco">
+                    <div class="text-center md:text-left">
+                        <p class="text-xs text-zinc-500 uppercase font-bold tracking-tighter italic">Vasco da Gama</p>
+                        <h3 class="text-xl font-bold">Vasco</h3>
+                    </div>
+                </div>
+
+                <div class="text-center flex-1">
+                    <p class="text-red-500 text-sm font-bold uppercase mb-1">${jogo.data}</p>
+                    <p class="text-xs text-zinc-400">${jogo.campeonato}</p>
+                    <p class="text-[10px] text-zinc-500 italic mt-1">${jogo.estadio}</p>
+                </div>
+
+                <div class="flex items-center gap-4 flex-1 justify-end flex-row-reverse md:flex-row">
+                    <div class="text-center md:text-right">
+                        <p class="text-xs text-zinc-500 uppercase font-bold italic">${jogo.adversario}</p>
+                        <h3 class="text-xl font-bold">${jogo.adversario}</h3>
+                    </div>
+                    <img src="${jogo.escudo_adv}" class="w-12 h-12 object-contain" alt="${jogo.adversario}">
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
